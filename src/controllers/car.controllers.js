@@ -13,7 +13,6 @@ const create = catchError(async(req, res) => {
         model: model,
         color: color,
         year: year,
-        isAvailable: isAvailable,
     });
     return res.status(201).json(car);
 });

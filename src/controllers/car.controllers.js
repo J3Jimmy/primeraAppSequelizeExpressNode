@@ -17,7 +17,14 @@ const create = catchError(async(req, res) => {
     return res.status(201).json(car);
 });
 
+const getOne = catchError(async(req, res) => {
+    const { id } = req.params;
+    const car = await Car.findByPk(id);
+    return res.json(car);
+});
+
 module.exports = {
     getAll,
     create,
+    getOne,
 }

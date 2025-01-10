@@ -16,8 +16,23 @@ const create = catchError(async(req, res) => {
     return res.status(201).json(product);
 });
 
+const getOne = catchError(async(req, res) => {
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
+    return res.json(product);
+});
+
+const remove = catchError(async(req, res) => {
+    const { id } = req.params;
+   // const product = await Product.findByPk(id); //
+    await Product.destroy({ where: { id: id } });
+    return res.sendStatus(204);
+}); 
+
 
 module.exports = {
     getAll,
     create,
+    getOne,
+    remove,
 }

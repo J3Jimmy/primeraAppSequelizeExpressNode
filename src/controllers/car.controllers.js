@@ -23,8 +23,15 @@ const getOne = catchError(async(req, res) => {
     return res.json(car);
 });
 
+const remove = catchError(async(req, res) => {
+    const { id } = req.params;
+    await Car.destroy({ where: { id: id } });
+    return res.sendStatus(204);
+}); 
+
 module.exports = {
     getAll,
     create,
     getOne,
+    remove,
 }

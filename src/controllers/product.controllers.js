@@ -24,7 +24,6 @@ const getOne = catchError(async(req, res) => {
 
 const remove = catchError(async(req, res) => {
     const { id } = req.params;
-   // const product = await Product.findByPk(id); //
     await Product.destroy({ where: { id: id } });
     return res.sendStatus(204);
 }); 

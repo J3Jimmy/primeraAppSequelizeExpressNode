@@ -29,9 +29,22 @@ const remove = catchError(async(req, res) => {
     return res.sendStatus(204);
 }); 
 
+const update = catchError(async(req, res) => {
+    const {brand, model, color, year} = req.body;
+    const { id } = req.params;
+    const car = await Car.update({
+        brand: brand,
+        model: model,
+        color: color,
+        year: year,
+    }, { where: { id: id }, returning: true }); 
+    return res.json(car);
+});
+
 module.exports = {
     getAll,
     create,
     getOne,
     remove,
+    update,
 }

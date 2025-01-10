@@ -1,4 +1,4 @@
-const { getAll, create, getOne, remove } = require('../controllers/product.controllers');
+const { getAll, create, getOne, remove, update } = require('../controllers/product.controllers');
 const express = require('express');
 
 const productRouter = express.Router();
@@ -9,6 +9,7 @@ productRouter.route("/products")
 
 productRouter.route("/products/:id")
     .get(getOne)
-    .delete(remove);
+    .delete(remove)
+    .put(update);
 
 module.exports = productRouter;

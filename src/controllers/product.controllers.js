@@ -28,10 +28,22 @@ const remove = catchError(async(req, res) => {
     return res.sendStatus(204);
 }); 
 
+const update = catchError(async(req, res) => {
+    const {name, price, isAvailable} = req.body;
+    const { id } = req.params;
+    const product = await Product.update({
+        name: name,
+        price: price,
+        isAvailable: isAvailable,
+    }, { where: { id: id }, returning: true }); 
+    return res.json(product);
+});
+
 
 module.exports = {
     getAll,
     create,
     getOne,
     remove,
+    update,
 }
